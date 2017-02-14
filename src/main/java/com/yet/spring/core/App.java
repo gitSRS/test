@@ -17,14 +17,15 @@ public class App {
     private EventLogger defaultLogger;
     private Map<EventType, EventLogger> loggers;
 
-    public App(Client client, Map<EventType, EventLogger> loggers, EventLogger defaultLogger) {
+    public App(Client client, EventLogger defaultLogger, Map<EventType, EventLogger> loggers) {
         this.client = client;
-        this.loggers = loggers;
         this.defaultLogger = defaultLogger;
+        this.loggers = loggers;
     }
 
     private void logEvent(EventType type, Event event) {
         EventLogger logger = loggers.get(type);
+
         if(logger == null) {
             logger = defaultLogger;
         }
@@ -44,15 +45,19 @@ public class App {
         }
 
         App app = ctx.getBean(App.class);
+
         Event event = ctx.getBean(Event.class);
         event.setMsg("Some string 1");
         app.logEvent(EventType.INFO, event);
 
         Event event2 = ctx.getBean(Event.class);
         event2.setMsg("Some string 4444");
-        app.logEvent(null, event);
+        app.logEvent(null, event2);
 
-        //app.logEvent("Some string 2");
+        Event event3 = ctx.getBean(Event.class);
+        event3.setMsg("Some string 5555");
+        app.logEvent(EventType.ERROR, event3);
+
         ctx.close();
     }
 }

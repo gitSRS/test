@@ -16,5 +16,13 @@ public class CombinedEventLogger implements EventLogger {
 
     public void logEvent(Event event) {
 
+        //loggers.iterator().forEachRemaining(logger -> {logEvent(event);});
+
+        for(Object log : loggers.toArray()) {
+            EventLogger  logger = (EventLogger)log;
+            logger.logEvent(event);
+        }
+        //EventLogger[] logger =
+        //loggers.stream().forEach(logger -> logEvent(event));
     }
 }

@@ -22,6 +22,7 @@ public class Event {
     public void setMsg(String msg) {
         this.msg = msg;
     }
+
     public String getMsg() {return this.msg;}
 
     @Override
