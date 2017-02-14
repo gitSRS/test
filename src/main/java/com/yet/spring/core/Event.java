@@ -8,12 +8,13 @@ import java.util.Random;
  * Created by RStreltsov on 13.02.2017.
  */
 public class Event {
-    private Integer id = new Random().nextInt(10);
+    private Integer id;
     private String msg;
     private Date date;
     private DateFormat dateFormat;
 
     public Event(Date date, DateFormat dateFormat) {
+        this.id = new Random().nextInt(10);
         this.date = date;
         this.dateFormat = dateFormat;
     }
@@ -21,6 +22,7 @@ public class Event {
     public void setMsg(String msg) {
         this.msg = msg;
     }
+    public String getMsg() {return this.msg;}
 
     @Override
     public String toString() {

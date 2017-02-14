@@ -2,8 +2,11 @@ package com.yet.spring.core;
 
 import com.yet.spring.core.bean.Client;
 import com.yet.spring.core.logger.EventLogger;
-import org.springframework.context.ApplicationContext;
+import com.yet.spring.core.logger.EventType;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import java.util.Map;
 
 /**
  * Created by RStreltsov on 13.02.2017.
@@ -11,20 +14,29 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class App {
 
     private Client client;
-    private EventLogger eventLogger;
+    private EventLogger defaultLogger;
+    private Map<EventType, EventLogger> loggers;
 
-    private void logEvent(String msg) {
-        String message = msg.replaceAll(""+client.getId(), client.getFullName());
-        //eventLogger.logEvent(message);
+    public App(Client client, Map<EventType, EventLogger> loggers, EventLogger defaultLogger) {
+        this.client = client;
+        this.loggers = loggers;
+        this.defaultLogger = defaultLogger;
     }
 
-    public App(Client client, EventLogger logger) {
-        this.client = client;
-        this.eventLogger = logger;
+    private void logEvent(EventType type, Event event) {
+        EventLogger logger = loggers.get(type);
+        if(logger == null) {
+            logger = defaultLogger;
+        }
+
+        String message = event.getMsg();
+        event.setMsg(message.replaceAll(""+client.getId(), client.getFullName()));
+
+        logger.logEvent(event);
     }
 
     public static void main(String[] args){
-        ApplicationContext ctx = new ClassPathXmlApplicationContext("spring/spring-app.xml");
+        ConfigurableApplicationContext ctx = new ClassPathXmlApplicationContext("spring/spring-app.xml");
 
         String[] cont = ctx.getBeanDefinitionNames();
         for(String name : cont) {
@@ -32,8 +44,15 @@ public class App {
         }
 
         App app = ctx.getBean(App.class);
+        Event event = ctx.getBean(Event.class);
+        event.setMsg("Some string 1");
+        app.logEvent(EventType.INFO, event);
 
-        app.logEvent("Some string 1");
-        app.logEvent("Some string 2");
+        Event event2 = ctx.getBean(Event.class);
+        event2.setMsg("Some string 4444");
+        app.logEvent(null, event);
+
+        //app.logEvent("Some string 2");
+        ctx.close();
     }
 }

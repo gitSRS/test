@@ -19,4 +19,8 @@ public class Client {
     public String getFullName() {
         return fullName;
     }
+
+    public void setGreeting(String str) {
+        System.out.println(str);
+    }
 }
