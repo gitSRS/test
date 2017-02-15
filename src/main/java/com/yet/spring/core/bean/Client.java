@@ -3,12 +3,16 @@ package com.yet.spring.core.bean;
 /**
  * Created by RStreltsov on 13.02.2017.
  */
+
 public class Client {
     private Integer id;
     private String fullName;
 
-    public Client(Integer id, String fullName) {
+    public void setId(Integer id) {
         this.id = id;
+    }
+
+    public void setFullName(String fullName) {
         this.fullName = fullName;
     }
 

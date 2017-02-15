@@ -6,19 +6,36 @@ import java.util.List;
 /**
  * Created by RStreltsov on 13.02.2017.
  */
-import com.yet.spring.core.Event;
+import com.yet.spring.core.bean.Event;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+
+@Component
 public class CacheFileEventLogger extends FileEventLogger {
 
-    private Integer cacheSize;
+    @Value("${cache.size:5}")
+    private int cacheSize;
+
     private List<Event> cache;
 
-    public CacheFileEventLogger(Integer cacheSize, String filename) {
+    public CacheFileEventLogger() {
+    }
+
+    public CacheFileEventLogger(String filename, int cacheSize) {
         super(filename);
         this.cacheSize = cacheSize;
+
+    }
+
+    @PostConstruct
+    public void initCache() {
         this.cache = new ArrayList<Event>(cacheSize);
     }
 
+    @PreDestroy
     public void destroy() {
         if ( ! cache.isEmpty()) {
             writeEventsFromCache();
@@ -27,6 +44,7 @@ public class CacheFileEventLogger extends FileEventLogger {
 
     @Override
     public void logEvent(Event event) {
+        System.out.println("CacheFileEventLogger eventMess="+event.getMessage());
         cache.add(event);
 
         if (cache.size() == cacheSize) {

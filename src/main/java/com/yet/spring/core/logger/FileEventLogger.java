@@ -1,17 +1,27 @@
 package com.yet.spring.core.logger;
 
-import com.yet.spring.core.Event;
+import com.yet.spring.core.bean.Event;
 import org.apache.commons.io.FileUtils;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import java.io.File;
 import java.io.IOException;
 
 /**
  * Created by RStreltsov on 14.02.2017.
  */
+@Component
 public class FileEventLogger implements EventLogger{
+
+    @Value("${events.file:events_log.txt}")
     private String filename;
+
     private File file;
+
+    public FileEventLogger() {
+    }
 
     public FileEventLogger(String filename) {
         this.filename = filename;
@@ -25,6 +35,7 @@ public class FileEventLogger implements EventLogger{
         }
     }
 
+    @PostConstruct
     public void init() throws IOException {
         file = new File(filename);
         if (file.exists() && !file.canWrite()) {
