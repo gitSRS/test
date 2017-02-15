@@ -39,9 +39,7 @@ public class App //implements ApplicationListener
     }
 
     public static void main(String[] args){
-        //ConfigurableApplicationContext ctx = new ClassPathXmlApplicationContext("spring/spring-app.xml");
-        ConfigurableApplicationContext ctx = new ClassPathXmlApplicationContext("spring/spring-annotation.xml");
-
+        ConfigurableApplicationContext ctx = new ClassPathXmlApplicationContext("spring/spring-app.xml");
 
         String[] cont = ctx.getBeanDefinitionNames();
         for(String name : cont) {
