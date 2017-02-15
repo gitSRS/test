@@ -3,7 +3,8 @@ package com.yet.spring.core;
 import com.yet.spring.core.bean.Client;
 import com.yet.spring.core.logger.EventLogger;
 import com.yet.spring.core.logger.EventType;
-import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.beans.BeansException;
+import org.springframework.context.*;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.util.Map;
@@ -11,7 +12,8 @@ import java.util.Map;
 /**
  * Created by RStreltsov on 13.02.2017.
  */
-public class App {
+public class App //implements ApplicationListener
+{
 
     private Client client;
     private EventLogger defaultLogger;
@@ -37,7 +39,9 @@ public class App {
     }
 
     public static void main(String[] args){
-        ConfigurableApplicationContext ctx = new ClassPathXmlApplicationContext("spring/spring-app.xml");
+        //ConfigurableApplicationContext ctx = new ClassPathXmlApplicationContext("spring/spring-app.xml");
+        ConfigurableApplicationContext ctx = new ClassPathXmlApplicationContext("spring/spring-annotation.xml");
+
 
         String[] cont = ctx.getBeanDefinitionNames();
         for(String name : cont) {
@@ -60,4 +64,10 @@ public class App {
 
         ctx.close();
     }
+
+    /*
+    public void onApplicationEvent(ApplicationEvent applicationEvent) {
+        System.out.println("START!!!");
+    }
+    */
 }

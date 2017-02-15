@@ -36,6 +36,9 @@ public class CacheFileEventLogger extends FileEventLogger {
     }
 
     private void writeEventsFromCache() {
-        cache.stream().forEach(super::logEvent);
+        //cache.stream().forEach(super::logEvent);
+        for(Object ev : cache.toArray()) {
+            super.logEvent((Event)ev);
+        }
     }
 }
