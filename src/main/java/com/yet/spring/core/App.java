@@ -81,14 +81,10 @@ public class App
         System.out.println("mess="+event.getMessage());
         app.logEvent(null, event);
 
-
-/*
-        Event event = ctx.getBean(Event.class);
-        event.setMsg("Some string 1");
+        event = ctx.getBean(Event.class);
+        event.setMessage("Some string 1");
         app.logEvent(EventType.INFO, event);
 
-
-*/
         ctx.close();
     }
 }

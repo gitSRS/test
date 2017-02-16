@@ -1,6 +1,7 @@
 package com.yet.spring.core.bean;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import java.text.DateFormat;
@@ -11,6 +12,7 @@ import java.util.Random;
  * Created by RStreltsov on 13.02.2017.
  */
 @Component
+@Scope("prototype")
 public class Event {
     private Integer id;
     private String message;
