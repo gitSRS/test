@@ -13,4 +13,8 @@ public class ConsoleEventLogger implements EventLogger {
 
     public ConsoleEventLogger() {
     }
+
+    public void methodTest() {
+        //System.out.println("Run methodTest");
+    }
 }
