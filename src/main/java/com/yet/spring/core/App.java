@@ -47,19 +47,19 @@ public class App //implements ApplicationListener
         }
 
         App app = ctx.getBean(App.class);
-
+/*
         Event event = ctx.getBean(Event.class);
         event.setMsg("Some string 1");
         app.logEvent(EventType.INFO, event);
-
+*/
         Event event2 = ctx.getBean(Event.class);
         event2.setMsg("Some string 4444");
         app.logEvent(null, event2);
-
+/*
         Event event3 = ctx.getBean(Event.class);
         event3.setMsg("Some string 5555");
         app.logEvent(EventType.ERROR, event3);
-
+*/
         ctx.close();
     }
 

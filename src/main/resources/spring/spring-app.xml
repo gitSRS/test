@@ -30,7 +30,8 @@
 
     <bean id="app" class="com.yet.spring.core.App">
         <constructor-arg index="0" ref="client"/>
-        <constructor-arg index="1" ref="cacheFileEventLogger"/>
+        <constructor-arg index="1" value = "#{T(com.yet.spring.core.bean.Event).isDay(8, 17) ?
+                                            cacheFileEventLogger : consoleEventLogger}"/>
         <constructor-arg index="2">
             <map>
                 <entry key="INFO" value-ref ="consoleEventLogger"/>
