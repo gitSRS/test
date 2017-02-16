@@ -1,6 +1,6 @@
 package com.yet.spring.core.logger;
 
-import com.yet.spring.core.Event;
+import com.yet.spring.core.bean.Event;
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;

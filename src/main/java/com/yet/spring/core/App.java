@@ -1,9 +1,9 @@
 package com.yet.spring.core;
 
 import com.yet.spring.core.bean.Client;
+import com.yet.spring.core.bean.Event;
 import com.yet.spring.core.logger.EventLogger;
-import com.yet.spring.core.logger.EventType;
-import org.springframework.beans.BeansException;
+import com.yet.spring.core.bean.EventType;
 import org.springframework.context.*;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 

@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * Created by RStreltsov on 13.02.2017.
  */
-import com.yet.spring.core.Event;
+import com.yet.spring.core.bean.Event;
 
 public class CacheFileEventLogger extends FileEventLogger {
 
