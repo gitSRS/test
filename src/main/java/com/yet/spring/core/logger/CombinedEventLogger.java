@@ -25,4 +25,8 @@ public class CombinedEventLogger implements EventLogger {
         //EventLogger[] logger =
         //loggers.stream().forEach(logger -> logEvent(event));
     }
+
+    public void methodTest() {
+        //System.out.println("Run methodTest");
+    }
 }

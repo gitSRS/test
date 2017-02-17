@@ -41,4 +41,8 @@ public class CacheFileEventLogger extends FileEventLogger {
             super.logEvent((Event)ev);
         }
     }
+
+    public void methodTest() {
+        //System.out.println("Run methodTest");
+    }
 }

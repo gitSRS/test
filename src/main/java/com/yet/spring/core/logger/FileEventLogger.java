@@ -33,4 +33,8 @@ public class FileEventLogger implements EventLogger{
             file.createNewFile();
         }
     }
+
+    public void methodTest() {
+        //System.out.println("Run methodTest");
+    }
 }

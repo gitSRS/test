@@ -29,16 +29,18 @@
 
     </bean>
 
+    <util:map id="loggerMap">
+        <entry key="INFO" value-ref="consoleEventLogger" />
+        <entry key="ERROR" value-ref="combinedEventLogger" />
+    </util:map>
+
     <bean id="app" class="com.yet.spring.core.App">
-        <constructor-arg index="0" ref="client"/>
-        <constructor-arg index="1" value = "#{T(com.yet.spring.core.bean.Event).isDay(8, 17) ?
+
+        <property name="client" value="#{client}"/>
+        <property name="defaultLogger" value="#{T(com.yet.spring.core.bean.Event).isDay(8, 17) ?
                                             cacheFileEventLogger : consoleEventLogger}"/>
-        <constructor-arg index="2">
-            <map>
-                <entry key="INFO" value-ref ="consoleEventLogger"/>
-                <entry key="ERROR" value-ref ="combinedEventLogger"/>
-            </map>
-        </constructor-arg>
+        <property name="loggers" value="#{loggerMap}"/>
+
     </bean>
 
     <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
@@ -48,7 +50,7 @@
             </list>
         </property>
 
-        <property name="ignoreResourceNotFound" value="true"/>
+        <property name="ignoreResourceNotFound" value="false"/>
         <property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE"/>
     </bean>
 

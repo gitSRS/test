@@ -12,9 +12,10 @@
         http://www.springframework.org/schema/aop/spring-aop-3.2.xsd">
 
 
-    <aop:aspectj-autoproxy />
+    <aop:aspectj-autoproxy/>
 
     <bean id="loggingAspect" class="com.yet.spring.core.aspects.LoggingAspect"/>
 
+    <bean id="staticAspect" class="com.yet.spring.core.aspects.StaticAspect"/>
 
 </beans>

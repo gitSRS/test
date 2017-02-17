@@ -2,6 +2,7 @@ package com.yet.spring.core.aspects;
 
 import com.yet.spring.core.logger.FileEventLogger;
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.AdviceName;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
@@ -13,7 +14,7 @@ import java.lang.reflect.Method;
  * Created by RStreltsov on 16.02.2017.
  */
 @Aspect
-@Component
+// @Component
 public class LoggingAspect {
 
     @Pointcut("execution(* *.logEvent(..))")
@@ -36,4 +37,5 @@ public class LoggingAspect {
         }
 
     }
+
 }
